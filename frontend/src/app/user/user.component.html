@@ -1,0 +1,93 @@
+<mat-toolbar color="md-primary" class="custom-navbar navbar navbar navbar-expand-md">
+
+    <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"
+            placeholder="Search products">
+    </div>
+
+
+    <div class="collapse navbar-collapse">
+        <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+            <li class="nav-item">
+                <a class="nav-link" mat-button routerLink="/wishlist">
+                    <i style="font-size:20px" class="fa fa-heart" aria-hidden="true"></i>
+                    <p style="color: black;">WishList</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" mat-button routerLink="/cart">
+                    <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
+                    <p style="color: black;">Cart</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <br>
+        <mat-divider></mat-divider>
+        <p>Shop Based On Category</p>
+        <mat-divider></mat-divider>
+
+        <a mat-button>Beds</a>
+
+        <br><br>
+        <a mat-button>Sofas & Sofa Beds</a>
+        <br>
+        <br>
+
+        <a mat-button>Bookcases & Shelves</a>
+
+        <br><br>
+        <a mat-button>Dining Table</a>
+        <br><br>
+
+        <a mat-button>TV & Media Furniture</a>
+
+
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+        <div>
+            <div class="container">
+                <div class="row" (searchTextChanged)="onSearchTextChanged()">
+                    <div ng-controller="AppCtrl as appCtrl" ng-cloak *ngFor="let product of products"
+                        class="col-12 col-md-4 col-lg-4 mb-3 mt-2">
+                        <div
+                            *ngIf="enteredSearchValue === '' || product.productName.toLowerCase().includes(enteredSearchValue)">
+                            <mat-card>
+
+
+                                <img mat-card-image src="/assets/images/{{product.productImageLink}}">
+
+                                <mat-card-header>
+                                    <mat-card-title class="mat-card-title"><strong
+                                            style="font-family: 'Times New Roman', Times, serif;">{{product.productName}}</strong>
+                                    </mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <div class="card-text-content">
+                                        <h3>Offer Price: <strong>$ {{product.productDiscountedPrice}}</strong></h3>
+                                        Original Price<h3 style="text-decoration:line-through; color: red;">$
+                                            {{product.productActualPrice}}</h3>
+                                    </div>
+                                </mat-card-content>
+
+                                <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                                    <button mat-raised-button color="Accent"
+                                        (click)="addToWishlist(product)">WhishList</button>
+                                    <button mat-raised-button color="primary" >Add To
+                                        Cart</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

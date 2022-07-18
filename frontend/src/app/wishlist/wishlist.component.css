@@ -1,0 +1,16 @@
+mat-card img{
+    width:400px;
+    height: 400px;
+
+}
+.container-1{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+shopmoreButton{
+    text-align: center;
+    position: center;
+    padding-bottom: 20px;
+    float: right;
+}

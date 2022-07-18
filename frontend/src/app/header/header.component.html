@@ -1,0 +1,83 @@
+<mat-toolbar color="md-primary">
+  <span style="font-weight: bolder; font-family:cursive;padding:50px ;">
+    <i style="font-size: 40px;" class="fas fa-shipping-fast"> Shop For Home</i>
+  </span>
+
+
+
+  <div class="container">
+
+    <a *ngIf="! isLoggedIn()" style="float: right;" class="f2" routerLink="/login" mat-button color="primary">
+      <i class="fa fa-sign-in" style="font-size: 20px;" aria-hidden="true"></i> Login
+    </a>
+  </div>
+
+
+  <div class="container">
+    <a *ngIf=" isLoggedIn()" style="text-align: right;" class="f1" (click)="logout()" mat-button color="warn">
+      Logout <i class="fa fa-sign-out" style="font-size: 20px;" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  <div class="container">
+    <a class="flex-icon-3" style="text-align: right;" *ngIf="! isLoggedIn()" routerLink="/registration" mat-button
+      color="primary">
+      <i class="fa fa-user-plus" style="font-size: 15px ;" aria-hidden="true"></i> Register
+    </a>
+  </div>
+
+  <div class="container">
+    <a class="flex-icon-4" style="float: right;" *ngIf="userService.roleMatch(['Admin'])" routerLink="/admin" mat-button
+      color="primary">
+      Dash Board
+    </a>
+  </div>
+
+  <!-- <button *ngIf="userService.roleMatch(['User'])" routerLink="/user" mat-raised-button color="primary">
+    User Dash Board 
+  </button> -->
+
+</mat-toolbar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Shop For Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/admin"
+            *ngIf="userService.roleMatch(['Admin'])"
+            >Admin Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/user"
+            *ngIf="userService.roleMatch(['User'])"
+            >User Dashboard</a>
+          </li>
+         
+        </ul>
+        <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button>&nbsp;
+        <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Logout</button>
+        <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/registration">Register</button>
+      </div>
+    </div>
+  </nav> -->

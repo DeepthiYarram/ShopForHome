@@ -1,0 +1,39 @@
+<mat-toolbar>
+    <div class="container">
+        <button style="float: right;" mat-raised-button color="primary" class="shopmoreButton" routerLink="/user">Shop More </button>
+    </div>
+</mat-toolbar>
+<div class="container">
+    <div class="container-1" style="font-family: 'Times New Roman', Times, serif;font-size: 50px;">Your Wish List
+    </div>
+    <div class="row">
+        <div ng-controller="AppCtrl as appCtrl" ng-cloak *ngFor="let wish of wishlistData"
+            class="col-12 col-md-4 col-lg-4 mb-3 mt-2">
+            <div>
+                <mat-card>
+
+
+                    <img mat-card-image src="/assets/images/{{wish.product.productImageLink}}">
+
+                    <mat-card-header>
+                        <mat-card-title class="mat-card-title"><strong
+                                style="font-family: 'Times New Roman', Times, serif;">{{wish.product.productName}}</strong>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="card-text-content">
+                            <h3>Offer Price: <strong>$ {{wish.product.productDiscountedPrice}}</strong></h3>
+                            Original Price<h3 style="text-decoration:line-through; color: red;">$
+                                {{wish.product.productActualPrice}}</h3>
+                        </div>
+                    </mat-card-content>
+
+                    <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-raised-button color="warn" (click)="deleteWishlistProduct(wish.id)">Remove</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+</div>
