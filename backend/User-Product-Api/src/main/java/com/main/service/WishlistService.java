@@ -22,10 +22,12 @@ public class WishlistService {
 	@Autowired
 	private UserDao userDao;
 
+	//add product to wishlist
 	public Wishlist addToWishlist(Wishlist wishlist) {
 		return wishlistDao.save(wishlist);
 	}
 
+	//retrieve the wishlist
 	public List<Wishlist> getWishList(String userName) {
 
 		List<Wishlist> returnList = new ArrayList<Wishlist>();
@@ -41,6 +43,7 @@ public class WishlistService {
 		return returnList;
 	}
 
+	//delete a product in wishlist
 	public ResponseEntity<Map<String, Boolean>> deleteWishlistProduct(int id) {
 		wishlistDao.deleteById(id);
 

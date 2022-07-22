@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.main.dao.CartDao;
 import com.main.dao.RoleDao;
 import com.main.dao.UserDao;
 import com.main.dao.WishlistDao;
+import com.main.entity.Cart;
 import com.main.entity.Role;
 import com.main.entity.User;
 import com.main.entity.Wishlist;
@@ -29,6 +31,8 @@ public class UserService<User_Role> {
 	private PasswordEncoder passwordEncoder;
     @Autowired
     private WishlistDao wishlistDao;
+    @Autowired
+    private CartDao cartDao;
 	//private User user;
 	
 	
@@ -112,11 +116,19 @@ public class UserService<User_Role> {
 	public void  deleteUser(String userName) {
 		User user = userDao.getById(userName);
 		ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>) wishlistDao.findAll();
+		ArrayList<Cart> cart = (ArrayList<Cart>) cartDao.findAll();
 		for(int i=0;i<wishlist.size();i++) {
 			if(wishlist.get(i).getUser().equals(user)) {
 				Wishlist list = wishlist.get(i);
 				Integer id = list.getId();
 				wishlistDao.deleteById(id);
+			}
+		}
+		for(int i=0;i<cart.size();i++) {
+			if(cart.get(i).getUser().equals(user)) {
+				Cart list = cart.get(i);
+				Integer id = list.getCartId();
+				cartDao.deleteById(id);
 			}
 		}
 		

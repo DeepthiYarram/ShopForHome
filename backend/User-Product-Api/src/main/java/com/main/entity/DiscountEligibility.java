@@ -1,47 +1,33 @@
 package com.main.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-
+@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@ToString
-public class Cart {
-	
+public class DiscountEligibility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer cartId;
+	private Integer id;
 	
 	@OneToOne(targetEntity = User.class,fetch = FetchType.EAGER)
 	@JoinColumn(name = "userName")
 	private User user;
 	
-	private Date createdDate;
-	
-	private Double cartCost;
-	
-	private Integer quantity_number;
-	
-	@ManyToOne
-	@JoinColumn(name="productId")
-	private Product product;
+	private Double DiscountAmount;
 
 }
