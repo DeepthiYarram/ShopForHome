@@ -15,10 +15,10 @@
                     Product Description
                 </th>
                 <th scope="col">
-                    Product Stock 
+                    Product Stock
                 </th>
-                
-                
+
+
             </tr>
         </thead>
         <tbody>
@@ -28,10 +28,12 @@
                 <td>{{product.productCategory}}</td>
                 <td>{{product.productDescription}}</td>
                 <td>{{product.productStock}}</td>
-                
-                
+
+
             </tr>
         </tbody>
     </table>
-    <button mat-raised-button color="primary" (click)="printPage()">Print</button>
+    <div class="container" style="text-align: center;">
+        <button mat-raised-button color="primary" (click)="printPage()">Print</button>
+    </div>
 </div>

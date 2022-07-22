@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ExcelService } from '../_services/excel.service';
 import { SalesReportService } from '../_services/sales-report.service';
 
 @Component({
@@ -9,29 +10,57 @@ import { SalesReportService } from '../_services/sales-report.service';
 })
 export class SalesReportComponent implements OnInit {
 
-  salesDetails:any = [];
-  constructor(private salesService:SalesReportService) { }
+  salesDetails: any = [];
+  salesDate:any = [];
+  constructor(private salesService: SalesReportService,
+    private excelService:ExcelService) { }
 
   ngOnInit(): void {
     this.getSalesReport();
   }
 
-  getSalesReport(){
+  getSalesReport() {
 
     this.salesService.getSalesReport().subscribe(
-      (res)=>{
+      (res) => {
         console.log(res);
         this.salesDetails = res;
       },
-      (error)=>console.log(error)
+      (error) => console.log(error)
     );
   }
 
-  printList(){
+  printList() {
+
     window.print();
+    // this.salesService.getSalesReport().subscribe(
+    //   response => this.excelService.exportAsExcelFile(response,"Sales-Report0")
+    // );
   }
 
-  date(dateForm:NgForm){
-    console.log(dateForm.value);
+  date(dateForm: NgForm) {
+    console.log()
+    let sample: any = [];
+
+    console.log(dateForm.value.startDate);
+    this.salesService.getSalesReport().subscribe(
+      (res) => {
+        sample = res;
+        console.log(sample);
+        for (let i = 0; i < sample.length; i++) {
+          let date:Date = sample[i].orderDate;
+          let startDate :Date = dateForm.value.startDate;
+          let endDate :Date = dateForm.value.endDate;
+          if (date<endDate && date>startDate) {
+            this.salesDate = sample[i]
+            
+          }
+          else {
+            continue;
+          }
+        }
+
+      }
+    )
   }
 }
