@@ -16,7 +16,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" mat-button routerLink="/cart">
-                    <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
+                    <i style="font-size: 20px;" class="fas fa-cart-plus"></i>&nbsp;<div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
                     <p style="color: black;">Cart</p>
                 </a>
             </li>
@@ -71,8 +71,8 @@
                                 </mat-card-header>
                                 <mat-card-content>
                                     <div class="card-text-content">
-                                        <h3>Offer Price: <strong>$ {{product.productDiscountedPrice}}</strong></h3>
-                                        Original Price<h3 style="text-decoration:line-through; color: red;">$
+                                        <h3>Offer Price: <strong>₹ {{product.productDiscountedPrice}}</strong></h3>
+                                        Original Price<h3 style="text-decoration:line-through; color: red;">₹
                                             {{product.productActualPrice}}</h3>
                                     </div>
                                 </mat-card-content>
@@ -80,7 +80,7 @@
                                 <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
                                     <button mat-raised-button color="Accent"
                                         (click)="addToWishlist(product)">WhishList</button>
-                                    <button mat-raised-button color="primary" >Add To
+                                    <button mat-raised-button color="primary" (click)="addtocart(product)">Add To
                                         Cart</button>
                                 </mat-card-actions>
                             </mat-card>

@@ -22,8 +22,8 @@
                     </mat-card-header>
                     <mat-card-content>
                         <div class="card-text-content">
-                            <h3>Offer Price: <strong>$ {{wish.product.productDiscountedPrice}}</strong></h3>
-                            Original Price<h3 style="text-decoration:line-through; color: red;">$
+                            <h3>Offer Price: <strong>₹ {{wish.product.productDiscountedPrice}}</strong></h3>
+                            Original Price<h3 style="text-decoration:line-through; color: red;">₹
                                 {{wish.product.productActualPrice}}</h3>
                         </div>
                     </mat-card-content>
@@ -37,3 +37,18 @@
     </div>
 
 </div>
+
+
+
+<ng-container *ngIf="wishlistData.length == 0">
+    <div class="contaiiner">
+        <div class="card">
+            <h5 class="card-title">My Wishlist</h5>
+        </div>
+        <div class="center">
+            <h4>Your Wishlist is Empty</h4>
+            <h6>Add items to your Wishlist</h6>
+            <button routerLink="/user" mat-raised-button class="btn btn-primary">Shop Now</button>
+        </div>
+    </div>
+</ng-container>

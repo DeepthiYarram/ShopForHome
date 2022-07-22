@@ -36,6 +36,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DiscountComponent } from './discount/discount.component';
+import { SalesReportComponent } from './sales-report/sales-report.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import {MatDialogModule} from '@angular/material/dialog';
          StockReportComponent,
          WishlistComponent,
          CartComponent,
-         UpdateProductComponent
+         UpdateProductComponent,
+         DiscountComponent,
+         SalesReportComponent
   ],
   imports: [
     BrowserModule,

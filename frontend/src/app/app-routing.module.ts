@@ -4,10 +4,12 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
 import { AdminComponent } from './admin/admin.component';
 import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
 import { CartComponent } from './cart/cart.component';
+import { DiscountComponent } from './discount/discount.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { SalesReportComponent } from './sales-report/sales-report.component';
 import { StockReportComponent } from './stock-report/stock-report.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { UserManagementComponent } from './user-management/user-management.component';
@@ -31,7 +33,14 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   {
     path: 'updateProduct/:productId', component: UpdateProductComponent
+  },
+  {
+    path:'discount',component: DiscountComponent
+  },
+  {
+    path:'salesReport',component:SalesReportComponent
   }
+
 ];
 
 @NgModule({

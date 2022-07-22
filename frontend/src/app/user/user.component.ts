@@ -17,27 +17,24 @@ export class UserComponent implements OnInit {
   message: string | undefined;
   products: any;
   wishlist: Wishlist[] = [];
-  enteredSearchValue:string = '';
-  // wishlist: Wishlist = {
-  //   userName: '',
-  //   productName: '',
-  //   productDiscountedPrice: 0,
-  //   productImageLink: ''
-  // }
+  enteredSearchValue: string = '';
 
-  private totalItem:number = 0;
+  public cartList: any = [];
+
+
+  public totalItem: number = 0;
   constructor(private userService: UserService,
     private productService: ProductServiceService,
     private wishListService: WishlistService,
     private CartService: CartService) { }
 
   ngOnInit(): void {
-    this.forUser();
-    this.getProducts();
 
-    // this.CartService.getProducts().subscribe(res=>{
-    //   this.totalItem = res.length;
-    // });
+    this.forUser();
+
+    this.getProducts();
+    this.getCount();
+
   }
 
   forUser() {
@@ -71,24 +68,34 @@ export class UserComponent implements OnInit {
 
     const theWishList = new Wishlist(product);
 
-   
+
     this.wishListService.addNewWishlist(product);
+    alert("Product Added to wishlist!")
   }
 
-  // addtocart(product: any) {
-  //   this.CartService.addtoCart(product);
-
-  // }
+  addtocart(product: any) {
+    this.getCount();
+    this.CartService.addCartList(product);
+    this.getCount();
+    alert("Product Added to cart! Proceed to checkout");
+  }
 
   @Output()
-  searchTextChanged:EventEmitter<string> = new EventEmitter<string>();
-
-
-  onSearchTextChanged(){
+  searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
+  onSearchTextChanged() {
     this.searchTextChanged.emit(this.enteredSearchValue)
     console.log(this.enteredSearchValue)
   }
 
-  
+
+  public getCount() {
+    this.CartService.getCartList().subscribe(res => {
+      this.cartList = res
+      this.totalItem = this.cartList.length;
+
+
+    });
+  }
+
 }
 

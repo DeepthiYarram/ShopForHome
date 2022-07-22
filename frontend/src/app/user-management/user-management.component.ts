@@ -10,6 +10,7 @@ import { UserService } from '../_services/user.service';
 export class UserManagementComponent implements OnInit {
 
   userDetails: any = [];
+  
   sample: any;
 
   constructor(private userService: UserService) {
@@ -56,6 +57,7 @@ export class UserManagementComponent implements OnInit {
         this.getUserDetails();
         
         alert("User -- " + userName + "-- deleted");
+        window.location.reload();
       }, (error) => console.log(error)
     );
 
