@@ -13,19 +13,12 @@ import com.main.mail.EmailSenderService;
 @EnableEurekaClient
 public class ShopForHomeBackendApplication {
 
-	@Autowired
-	private EmailSenderService emailService;
-	String mailSubject="Alert!!!! Product Stock less than 10";
-	String mailBody="Hello Team,\n This is the mail regarding the stock of the product,the product Stock is reduced please update it as soon as possible! \n Thankyou";
-
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ShopForHomeBackendApplication.class, args);
 	}
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void triggerMail() {
-		emailService.sendSimpleEmail("teammoshcreativebusiness@gmail.com", mailBody, mailSubject);
-	}
+	
 
 }

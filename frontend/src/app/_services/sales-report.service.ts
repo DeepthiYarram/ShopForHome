@@ -14,5 +14,14 @@ getSalesReport(){
 
   return  this.http.get("http://localhost:9091/getSalesReport");
 }
+
+getCurrentUserOrders(){
+
+  return this.http.get("http://localhost:9091/getSalesReport").forEach(
+    (a:any)=>{
+    
+    }
+  )
+}
 }
 

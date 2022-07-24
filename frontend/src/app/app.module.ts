@@ -38,6 +38,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import {MatDialogModule} from '@angular/material/dialog';
 import { DiscountComponent } from './discount/discount.component';
 import { SalesReportComponent } from './sales-report/sales-report.component';
+import { OrderPageComponent } from './order-page/order-page.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { SalesReportComponent } from './sales-report/sales-report.component';
          CartComponent,
          UpdateProductComponent,
          DiscountComponent,
-         SalesReportComponent
+         SalesReportComponent,
+         OrderPageComponent
   ],
   imports: [
     BrowserModule,

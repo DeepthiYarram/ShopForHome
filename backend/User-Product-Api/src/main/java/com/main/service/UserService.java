@@ -10,10 +10,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.main.dao.CartDao;
+import com.main.dao.OrderDao;
 import com.main.dao.RoleDao;
 import com.main.dao.UserDao;
 import com.main.dao.WishlistDao;
 import com.main.entity.Cart;
+import com.main.entity.Orders;
 import com.main.entity.Role;
 import com.main.entity.User;
 import com.main.entity.Wishlist;
@@ -34,7 +36,8 @@ public class UserService<User_Role> {
     @Autowired
     private CartDao cartDao;
 	//private User user;
-	
+	@Autowired
+	private OrderDao orderDao;
 	
 
 	public void initRoleAndUser() {
@@ -117,6 +120,7 @@ public class UserService<User_Role> {
 		User user = userDao.getById(userName);
 		ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>) wishlistDao.findAll();
 		ArrayList<Cart> cart = (ArrayList<Cart>) cartDao.findAll();
+		ArrayList<Orders> order = (ArrayList<Orders>) orderDao.findAll();
 		for(int i=0;i<wishlist.size();i++) {
 			if(wishlist.get(i).getUser().equals(user)) {
 				Wishlist list = wishlist.get(i);
@@ -129,6 +133,13 @@ public class UserService<User_Role> {
 				Cart list = cart.get(i);
 				Integer id = list.getCartId();
 				cartDao.deleteById(id);
+			}
+		}
+		for(int i=0;i<order.size();i++) {
+			if(order.get(i).getUser().equals(user)) {
+				Orders ord = order.get(i);
+				Integer id = ord.getOrderId();
+				orderDao.deleteById(id);
 			}
 		}
 		

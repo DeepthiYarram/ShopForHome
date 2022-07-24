@@ -30,21 +30,23 @@
         <mat-divider></mat-divider>
         <p>Shop Based On Category</p>
         <mat-divider></mat-divider>
+        <a mat-button (click)="shoponCategory('')">All Products</a>
+        <br><br>
 
-        <a mat-button>Beds</a>
+        <a mat-button (click)="shoponCategory('Beds')">Beds</a>
 
         <br><br>
-        <a mat-button>Sofas & Sofa Beds</a>
+        <a mat-button (click)="shoponCategory('Sofas & Sofa Beds')">Sofas & Sofa Beds</a>
         <br>
         <br>
 
-        <a mat-button>Bookcases & Shelves</a>
+        <a mat-button (click)="shoponCategory('Bookcases & Shelving Units')">Bookcases & Shelves</a>
 
         <br><br>
-        <a mat-button>Dining Table</a>
+        <a mat-button (click)="shoponCategory('Dining Table')">Dining Table</a>
         <br><br>
 
-        <a mat-button>TV & Media Furniture</a>
+        <a mat-button (click)="shoponCategory('TV & Media Furniture')">TV & Media Furniture</a>
 
 
 
@@ -55,7 +57,7 @@
         <div>
             <div class="container">
                 <div class="row" (searchTextChanged)="onSearchTextChanged()">
-                    <div ng-controller="AppCtrl as appCtrl" ng-cloak *ngFor="let product of products"
+                    <div ng-controller="AppCtrl as appCtrl" ng-cloak *ngFor="let product of categories"
                         class="col-12 col-md-4 col-lg-4 mb-3 mt-2">
                         <div
                             *ngIf="enteredSearchValue === '' || product.productName.toLowerCase().includes(enteredSearchValue)">

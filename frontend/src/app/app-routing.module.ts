@@ -8,6 +8,7 @@ import { DiscountComponent } from './discount/discount.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { OrderPageComponent } from './order-page/order-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SalesReportComponent } from './sales-report/sales-report.component';
 import { StockReportComponent } from './stock-report/stock-report.component';
@@ -39,7 +40,16 @@ const routes: Routes = [
   },
   {
     path:'salesReport',component:SalesReportComponent
+  },
+  {
+    path:'orderPage' , component:OrderPageComponent
   }
+
+
+
+
+
+
 
 ];
 

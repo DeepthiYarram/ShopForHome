@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
 
   message: string | undefined;
   products: any;
+  public categories:any;
   wishlist: Wishlist[] = [];
   enteredSearchValue: string = '';
 
@@ -54,6 +55,7 @@ export class UserComponent implements OnInit {
       (resp) => {
         console.log(resp);
         this.products = resp;
+        this.categories = resp;
         //cart code
         this.products.forEach((a: any) => {
           Object.assign(a, { quantity: 1, total: a.price });
@@ -97,5 +99,16 @@ export class UserComponent implements OnInit {
     });
   }
 
+  shoponCategory(category:string){
+    console.log(category);
+    this.categories = this.products.filter((a:any)=>
+    {
+      if(a.productCategory == category || category == ''){
+        return a;
+      }
+    })
+
+
+  }
 }
 

@@ -1,5 +1,6 @@
 package com.main.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,8 @@ import javax.management.relation.RoleNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.main.dao.ProductDao;
 import com.main.entity.Product;
 import com.main.helper.CSVHelper;
+import com.main.mail.EmailSenderService;
 import com.main.message.ResponseMessage;
 import com.main.service.ProductService;
 
@@ -36,6 +40,12 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private ProductDao productDao;
+	@Autowired
+	private EmailSenderService emailService;
+	String mailSubject = "Alert!!!! Product Stock less than 10";
+
+	
+	
 
 	@PostMapping("/addNewProduct")
 	public Product addNewProduct(@RequestBody Product product) {
@@ -64,41 +74,58 @@ public class ProductController {
 	public List<Product> getProductList(Product product) {
 		return productService.getProductsList(product);
 	}
-	
+
 	@GetMapping("/getProduct/{productId}")
 	public ResponseEntity<Product> getEmployeeById(@PathVariable Integer productId) {
-		Product product = productDao.findById(productId)
-				.orElseThrow();
+		Product product = productDao.findById(productId).orElseThrow();
 //				.orElseThrow(() -> new ResourceNotFoundException("product not exist with id :" + productId));
 		return ResponseEntity.ok(product);
 	}
 	// update product rest api
+
+	@PutMapping("/products/{productId}")
+	public ResponseEntity<Product> updateEmployee(@PathVariable Integer productId,
+			@RequestBody Product productdetails) {
+		Product product = productDao.findById(productId).orElseThrow();
+
+		product.setProductName(productdetails.getProductName());
+		product.setProductCategory(productdetails.getProductCategory());
+		product.setProductDescription(productdetails.getProductDescription());
+		product.setProductStock(productdetails.getProductStock());
+		product.setProductDiscountedPrice(productdetails.getProductDiscountedPrice());
+		product.setProductActualPrice(productdetails.getProductActualPrice());
+
+		Product updatedProduct = productDao.save(product);
+		return ResponseEntity.ok(updatedProduct);
+	}
+
+	@DeleteMapping("/deleteProduct/{productId}")
+	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Integer productId) {
+		Product product = productDao.findById(productId).orElseThrow();
+
+		productDao.delete(product);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+	}
+
 	
-		@PutMapping("/products/{productId}")
-		public ResponseEntity<Product> updateEmployee(@PathVariable Integer productId, @RequestBody Product productdetails){
-			Product product = productDao.findById(productId)
-					.orElseThrow();
-			
-			product.setProductName(productdetails.getProductName());
-			product.setProductCategory(productdetails.getProductCategory());
-			product.setProductDescription(productdetails.getProductDescription());
-			product.setProductStock(productdetails.getProductStock());
-			product.setProductDiscountedPrice(productdetails.getProductDiscountedPrice());
-			product.setProductActualPrice(productdetails.getProductActualPrice());
-			
-			Product updatedProduct = productDao.save(product);
-			return ResponseEntity.ok(updatedProduct);
-		}
-		
-		@DeleteMapping("/deleteProduct/{productId}")
-		public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Integer productId){
-			Product product = productDao.findById(productId)
-					.orElseThrow();
-			
-			productDao.delete(product);
-			Map<String, Boolean> response = new HashMap<>();
-			response.put("deleted", Boolean.TRUE);
-			return ResponseEntity.ok(response);
-		}
+	@EventListener(ApplicationReadyEvent.class)
+	public void triggerMail() {
+		ArrayList<Product> products = (ArrayList<Product>) productDao.findAll();
+		for (int i = 0; i < products.size(); i++) {
+
+			if (products.get(i).getProductStock() < 10) {
+				String mailBody = "Hello Team,\n\nThis is the mail regarding the stock of the product,the product Stock of ID = "
+						+ products.get(i).getProductId() + " and product named --" + products.get(i).getProductName()
+						+ "--is reduced please update it as soon as possible! \n\n\nThankyou!";
+
+				emailService.sendSimpleEmail("teammoshcreativebusiness@gmail.com", mailBody, mailSubject);
+			} else {
+				continue;
+			}
+		}          
+
+	}
 
 }
