@@ -20,9 +20,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
     this.getCartItems();
-
     this.getCouponList();
 
   }
@@ -36,8 +34,6 @@ export class CartComponent implements OnInit {
           console.log(this.product[i].cartCost);
           this.grandTotal = this.grandTotal + this.product[i].cartCost;
         }
-
-
       }, (error) => console.log(error)
     );
   }
@@ -52,6 +48,7 @@ export class CartComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
   emptycart() {
     this.cartService.deleteEverythingFromCart().subscribe(
       (resp) => {
@@ -59,7 +56,6 @@ export class CartComponent implements OnInit {
         this.getCartItems();
       }, (error) => console.log(error)
     );
-
   }
 
   increaseQuantity(item: any) {
@@ -69,7 +65,6 @@ export class CartComponent implements OnInit {
         this.getCartItems();
       }, (error) => console.log(error)
     );
-
     window.location.reload();
   }
 
@@ -78,7 +73,6 @@ export class CartComponent implements OnInit {
       alert("Quantity should be greater or equal to 1 cannot reduce Less than 1");
     }
     else {
-
       this.cartService.decreaseQuantity(item).subscribe(
         (res) => {
           console.log(res);
@@ -87,9 +81,7 @@ export class CartComponent implements OnInit {
       );
       window.location.reload();
     }
-
   }
-
 
   getCouponList() {
     let userName = localStorage.getItem("userName")!;
@@ -107,24 +99,18 @@ export class CartComponent implements OnInit {
   }
 
   checkout(product: any, grandTotal: number) {
-    let products:any[] = [];
+    let products: any[] = [];
     console.log(grandTotal);
     //console.log(product[0].product);
     for (let i = 0; i < product.length; i++) {
       console.log(product[i].cartCost);
-      
-      this.cartService.addToOrders(product[i].product,grandTotal,product[i].cartCost,product[i].quantity_number).subscribe(
-        (res)=>{
+      this.cartService.addToOrders(product[i].product, grandTotal, product[i].cartCost, product[i].quantity_number).subscribe(
+        (res) => {
           console.log(res);
           alert("Checkout Successful !");
         },
-        (error)=>console.log(error)
+        (error) => console.log(error)
       );
-
     }
-
-    
-    
-
   }
 }

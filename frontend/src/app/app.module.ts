@@ -10,32 +10,32 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { UserService } from './_services/user.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatButtonModule} from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatButtonModule } from '@angular/material/button';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
-import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { UserManagementComponent } from './user-management/user-management.component'
-import {MatTableModule} from '@angular/material/table'
-import {MatSelectModule} from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table'
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
 import { StockReportComponent } from './stock-report/stock-report.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component'
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { UpdateProductComponent } from './update-product/update-product.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DiscountComponent } from './discount/discount.component';
 import { SalesReportComponent } from './sales-report/sales-report.component';
 import { OrderPageComponent } from './order-page/order-page.component';
@@ -52,15 +52,15 @@ import { OrderPageComponent } from './order-page/order-page.component';
     RegistrationComponent,
     AddNewProductComponent,
     UserManagementComponent,
-    
+
     BulkUploadComponent,
-         StockReportComponent,
-         WishlistComponent,
-         CartComponent,
-         UpdateProductComponent,
-         DiscountComponent,
-         SalesReportComponent,
-         OrderPageComponent
+    StockReportComponent,
+    WishlistComponent,
+    CartComponent,
+    UpdateProductComponent,
+    DiscountComponent,
+    SalesReportComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,
@@ -82,18 +82,18 @@ import { OrderPageComponent } from './order-page/order-page.component';
     MatDividerModule,
     MatSidenavModule,
     MatDialogModule
-  
+
   ],
-  providers: [ 
+  providers: [
     AuthGuard,
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     },
     UserService,
     {
-      provide:MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue:{appearance:'outline'}
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' }
     }
   ],
   bootstrap: [AppComponent]

@@ -15,31 +15,35 @@ mat-grid-tile {
     height: 150px;
 
 }
-.form-control{
+
+.form-control {
     border-radius: 3px;
     width: 600px;
     margin-left: 500px;
 }
-.search-icon{
+
+.search-icon {
     position: fixed;
     z-index: 10;
-    right:35%;
+    right: 35%;
     color: blue;
 }
-.nav-item{
+
+.nav-item {
     padding-left: 20px;
     padding-right: 20px;
 }
-mat-card img{
-    width:400px;
+
+mat-card img {
+    width: 400px;
     height: 400px;
 
 }
-mat-card img:hover{
+
+mat-card img:hover {
     transition: 0.3s ease-in-out;
     transform: scale(1.1);
 }
-
 
 mat-sidenav {
     margin: 16px;
@@ -52,18 +56,15 @@ mat-sidenav {
     text-align: center;
 }
 
-mat-sidenav-container{
+mat-sidenav-container {
     height: calc(100vh - 65px);
 }
 
 a {
-    
-    padding-left:0px ;
+    padding-left: 0px;
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
-
-   
 }
 
 .avatar {

@@ -1,21 +1,22 @@
-h3{
-    text-align: center; 
+h3 {
+    text-align: center;
     font-family: 'Times New Roman', Times, serif;
     font-size: 50px;
 }
-p{
+
+p {
     font-family: 'Times New Roman', Times, serif;
 }
 
-.card{
+.card {
     max-width: 600px;
-    margin:2em auto;
+    margin: 2em auto;
     text-align: center;
     max-height: 800px;
-    background-color:whitesmoke;
+    background-color: whitesmoke;
     border-radius: 20px !important;
 }
 
-h3{
+h3 {
     text-align: center;
 }

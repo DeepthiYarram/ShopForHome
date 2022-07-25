@@ -1,22 +1,14 @@
 <div class="container">
-<mat-card class="mb-50">
-<div class="container pd-10 mt-50" style="background-color: rgb(196, 150, 238);">
-<div class="text-center" >
-    <h2>Upload Your .CSV File Here</h2>
-    <input class="form-control" type="file" 
-            (change)="onChange($event)">
-  
-    <button (click)="onUpload()" 
-        class="btn btn-success">
-        Upload
-    </button>
+    <mat-card class="mb-50">
+        <div class="container pd-10 mt-50" style="background-color: rgb(196, 150, 238);">
+            <div class="text-center">
+                <h2>Upload Your .CSV File Here</h2>
+                <input class="form-control" type="file" (change)="onChange($event)">
+
+                <button (click)="onUpload()" class="btn btn-success">
+                    Upload
+                </button>
+            </div>
+        </div>
+    </mat-card>
 </div>
-</div>
-</mat-card>
-</div>
-<!-- Shareable short link of  uoloaded file -->
-<!-- 
-Flag variable is used here
-<div class="container" *ngIf="loading">
-    <h3>Loading ...</h3>
-</div> -->

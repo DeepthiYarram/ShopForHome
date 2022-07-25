@@ -10,6 +10,4 @@ import com.main.entity.User;
 @Repository
 public interface UserDao extends JpaRepository<User, String> {
 
-//	@Query("DELETE FROM  USER_ROLE WHERE user_id =  userName  and role_id = 'User'")
-//	public void deleteUserRole(@Param("userName") String userName);
 }

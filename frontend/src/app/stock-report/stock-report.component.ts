@@ -8,25 +8,23 @@ import { ProductServiceService } from '../_services/product-service.service';
 })
 export class StockReportComponent implements OnInit {
 
-  products :any;
-  constructor(private productService:ProductServiceService) { }
+  products: any;
+  constructor(private productService: ProductServiceService) { }
 
   ngOnInit(): void {
     this.getProducts();
   }
 
-  getProducts(){
+  getProducts() {
     this.productService.getProducts().subscribe(
-      (resp)=>{
+      (resp) => {
         console.log(resp);
-        this.products=resp;
-      },(error)=>console.log(error)
+        this.products = resp;
+      }, (error) => console.log(error)
     );
   }
 
-  
-
-  printPage(){
+  printPage() {
     window.print();
   }
 }

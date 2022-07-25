@@ -8,9 +8,9 @@ describe('AddNewProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddNewProductComponent ]
+      declarations: [AddNewProductComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddNewProductComponent);
     component = fixture.componentInstance;

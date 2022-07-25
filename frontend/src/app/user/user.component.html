@@ -5,7 +5,6 @@
             placeholder="Search products">
     </div>
 
-
     <div class="collapse navbar-collapse">
         <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
             <li class="nav-item">
@@ -16,7 +15,8 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" mat-button routerLink="/cart">
-                    <i style="font-size: 20px;" class="fas fa-cart-plus"></i>&nbsp;<div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+                    <i style="font-size: 20px;" class="fas fa-cart-plus"></i>&nbsp;<div style="font-size: 10px;"
+                        class="badge bg-danger">{{totalItem}}</div>
                     <p style="color: black;">Cart</p>
                 </a>
             </li>
@@ -48,9 +48,6 @@
 
         <a mat-button (click)="shoponCategory('TV & Media Furniture')">TV & Media Furniture</a>
 
-
-
-
     </mat-sidenav>
     <mat-sidenav-content>
 
@@ -62,7 +59,6 @@
                         <div
                             *ngIf="enteredSearchValue === '' || product.productName.toLowerCase().includes(enteredSearchValue)">
                             <mat-card>
-
 
                                 <img mat-card-image src="/assets/images/{{product.productImageLink}}">
 

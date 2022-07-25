@@ -45,27 +45,9 @@ export class OrderPageComponent implements OnInit {
             }
             console.log(this.discount);
             this.grandTotal = this.grandTotal - this.discount;
-
-
           }
-
         )
-
-
-
-
       }
-
-
     )
-
-
   }
-
-
-
-
-
-
-
 }

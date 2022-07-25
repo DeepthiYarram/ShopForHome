@@ -9,7 +9,7 @@ import lombok.ToString;
 import java.util.Set;
 
 @Entity
-@ToString
+
 public class User {
 
     @Id
@@ -19,6 +19,7 @@ public class User {
     private String userPassword;
     private String emailId;
     private String phoneNumber;
+    
     public String getEmailId() {
 		return emailId;
 	}
@@ -89,4 +90,13 @@ public class User {
     public void setRole(Set<Role> role) {
         this.role = role;
     }
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName
+				+ ", userPassword=" + userPassword + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber + ", role="
+				+ role + "]";
+	}
+    
+   
 }

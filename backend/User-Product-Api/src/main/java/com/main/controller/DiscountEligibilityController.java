@@ -27,10 +27,8 @@ public class DiscountEligibilityController {
 	public DiscountEligibility addDiscountEligible(@PathVariable String userName,@PathVariable Double amount) {
 		DiscountEligibility eligible = new DiscountEligibility();
 		User user = userDao.getById(userName);
-		
 		eligible.setUser(user);
 		eligible.setDiscountAmount(amount);
-		
 		return discountService.addtoEligibility(eligible);
 	}
 	
@@ -43,7 +41,5 @@ public class DiscountEligibilityController {
 	public void deleteUserCoupon(@PathVariable Integer id) {
 		discountService.deleteUserCoupon(id);
 	}
-	
-	
 	
 }

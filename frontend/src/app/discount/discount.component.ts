@@ -13,11 +13,11 @@ export class DiscountComponent implements OnInit {
 
   discounts: any = [];
   userDetails: any = [];
-  userCoupons:any = [];
+  userCoupons: any = [];
   sample: any;
   constructor(
     private discountService: DiscountService,
-    private userService:UserService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -26,39 +26,29 @@ export class DiscountComponent implements OnInit {
     this.getUserCoupons();
   }
 
-
   getUserDetails() {
     this.userService.getUsers().subscribe(
       (resp) => {
         console.log(resp);
         this.sample = resp;
-
         var count = Object.keys(resp).length;
         var j = 0;
         for (let i = 0; i < count; i++) {
-
           if (this.sample[i].role[0].roleName === "User") {
-            //let demo = this.sample[i];
-            //this.userDetails.push(demo);
             this.userDetails[j] = this.sample[i];
             j = j + 1;
-            //this.userDetails = this.sample[i];
             console.log(this.userDetails);
           }
           else {
             continue;
           }
         }
-
-
       },
       (err) => {
         console.log(err);
       }
     );
   }
-
-
 
   addCoupon(discountform: NgForm) {
     console.log(discountform);
@@ -69,7 +59,6 @@ export class DiscountComponent implements OnInit {
         this.getCoupons();
       }, (error) => console.log(error)
     );
-
   }
 
   getCoupons() {
@@ -78,7 +67,6 @@ export class DiscountComponent implements OnInit {
       (resp) => {
         this.discounts = resp;
         console.log(this.discounts);
-
       }, (error) => console.log(error)
     );
   }
@@ -92,39 +80,37 @@ export class DiscountComponent implements OnInit {
     );
   }
 
-
-  giveDiscount(discountselect:NgForm,user:any){
-    var amnt:number = +discountselect.value.discountCoupon
+  giveDiscount(discountselect: NgForm, user: any) {
+    var amnt: number = +discountselect.value.discountCoupon
     console.log(amnt);
     console.log(user);
-
-    return this.discountService.addUserCoupon(user,amnt).subscribe(
-      (res)=>{
+    return this.discountService.addUserCoupon(user, amnt).subscribe(
+      (res) => {
         console.log(res);
         this.getUserCoupons();
       },
-      (error)=>console.log(error)
+      (error) => console.log(error)
     );
   }
 
-  getUserCoupons(){
+  getUserCoupons() {
     this.discountService.getUserCoupons().subscribe(
-      (res)=>{
+      (res) => {
         this.userCoupons = res;
         console.log(this.userCoupons);
       },
-      (error)=>console.log(error)
+      (error) => console.log(error)
     );
   }
 
-  removeDiscount(id:number){
+  removeDiscount(id: number) {
 
     this.discountService.removeDiscount(id).subscribe(
-      (res)=>{
+      (res) => {
         console.log(res);
         this.getUserCoupons();
       },
-      (error)=>console.log(error)
+      (error) => console.log(error)
     );
   }
 }

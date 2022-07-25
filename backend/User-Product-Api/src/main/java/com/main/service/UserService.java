@@ -10,11 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.main.dao.CartDao;
+import com.main.dao.DiscountEligibilityDao;
 import com.main.dao.OrderDao;
 import com.main.dao.RoleDao;
 import com.main.dao.UserDao;
 import com.main.dao.WishlistDao;
 import com.main.entity.Cart;
+import com.main.entity.DiscountEligibility;
 import com.main.entity.Orders;
 import com.main.entity.Role;
 import com.main.entity.User;
@@ -38,6 +40,8 @@ public class UserService<User_Role> {
 	//private User user;
 	@Autowired
 	private OrderDao orderDao;
+	@Autowired
+	private DiscountEligibilityDao discountDao;
 	
 
 	public void initRoleAndUser() {
@@ -121,6 +125,8 @@ public class UserService<User_Role> {
 		ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>) wishlistDao.findAll();
 		ArrayList<Cart> cart = (ArrayList<Cart>) cartDao.findAll();
 		ArrayList<Orders> order = (ArrayList<Orders>) orderDao.findAll();
+		ArrayList<DiscountEligibility> discounts = (ArrayList<DiscountEligibility>) discountDao.findAll();
+		
 		for(int i=0;i<wishlist.size();i++) {
 			if(wishlist.get(i).getUser().equals(user)) {
 				Wishlist list = wishlist.get(i);
@@ -140,6 +146,14 @@ public class UserService<User_Role> {
 				Orders ord = order.get(i);
 				Integer id = ord.getOrderId();
 				orderDao.deleteById(id);
+			}
+		}
+		//
+		for(int i=0;i<discounts.size();i++) {
+			if(discounts.get(i).getUser().equals(user)) {
+				DiscountEligibility ord = discounts.get(i);
+				Integer id = ord.getId();
+				discountDao.deleteById(id);
 			}
 		}
 		

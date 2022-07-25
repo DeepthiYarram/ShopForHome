@@ -65,12 +65,10 @@ public class CartController {
 		return cartService.getCartList(userName);
 	}
 	
-	
 	//delete a product from cart
 	@DeleteMapping("/removeCartProduct/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteCartproduct(@PathVariable int id){
 		cartService.deleteCartProduct(id);
-		
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
@@ -79,7 +77,6 @@ public class CartController {
 	@DeleteMapping("/removeAllProducts")
 	public ResponseEntity<Map<String, Boolean>> deleteAllCartproduct(){
 		cartService.deleteAllCartProduct();
-		
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
@@ -108,7 +105,6 @@ public class CartController {
 		Double updatedprice = updatedQuantity * product.getProductDiscountedPrice();
 		cart.setQuantity_number(updatedQuantity);
 		cart.setCartCost(updatedprice);
-				
 		Cart updatedCart = cartDao.save(cart);
 		return ResponseEntity.ok(updatedCart);
 	}

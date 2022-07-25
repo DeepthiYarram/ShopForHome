@@ -66,21 +66,12 @@ public class OrderController {
 		
 		//get today date 
 		Date today = new Date();
-		
-				
-		
 		order.setOrderDate(today);
 		order.setGrandTotalPrice(TotalPrice);
 		order.setUser(user);
-		
-//		
 		order.setProduct(productDetails);
 		order.setQuantity(Quantity);
 		order.setTotal(cartCost);
-		
-		
-
-		
 		return orderDao.save(order);
 	}
 

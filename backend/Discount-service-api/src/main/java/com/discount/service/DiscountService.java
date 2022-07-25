@@ -30,9 +30,5 @@ public class DiscountService {
 		discountDao.deleteById(DiscountId);
 		
 	}
-	
-
-	
-	
 
 }

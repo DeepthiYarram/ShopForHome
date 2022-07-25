@@ -35,9 +35,6 @@ export class CartService {
 
     console.log(product);
     var userName: string = localStorage.getItem("userName")!;
-
-
-
     return this.http.post("http://localhost:9090/cart/addToCart/" + userName, product, { headers: this.requestHeader }).subscribe(resp => console.log(resp));
 
   }
@@ -55,7 +52,6 @@ export class CartService {
   increaseQuantity(item: any): Observable<Object> {
 
     console.log(item);
-
     return this.http.put("http://localhost:9090/cart/increaseQuantity/" + item.cartId, item);
 
   }
@@ -66,13 +62,9 @@ export class CartService {
 
   }
 
-  public  addToOrders(products: any, grandTotal: number,cartCost:number,quantity:number) {
+  public addToOrders(products: any, grandTotal: number, cartCost: number, quantity: number) {
     let userName = localStorage.getItem("userName");
-    
-    return this.http.post("http://localhost:9090/addToOrders/" + userName + "/" + grandTotal +"/"+ cartCost +"/"+quantity, products);
-    
-  
+    return this.http.post("http://localhost:9090/addToOrders/" + userName + "/" + grandTotal + "/" + cartCost + "/" + quantity, products);
+
   }
-
-
 }

@@ -14,11 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
-@NoArgsConstructor
-@Getter
-@Setter
-@AllArgsConstructor
 public class DiscountEligibility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,5 +26,45 @@ public class DiscountEligibility {
 	private User user;
 	
 	private Double DiscountAmount;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Double getDiscountAmount() {
+		return DiscountAmount;
+	}
+
+	public void setDiscountAmount(Double discountAmount) {
+		DiscountAmount = discountAmount;
+	}
+
+	public DiscountEligibility(Integer id, User user, Double discountAmount) {
+		super();
+		this.id = id;
+		this.user = user;
+		DiscountAmount = discountAmount;
+	}
+
+	public DiscountEligibility() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "DiscountEligibility [id=" + id + ", user=" + user + ", DiscountAmount=" + DiscountAmount + "]";
+	}
 
 }

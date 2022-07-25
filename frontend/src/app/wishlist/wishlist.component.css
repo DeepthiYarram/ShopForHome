@@ -1,28 +1,32 @@
-mat-card img{
-    width:400px;
+mat-card img {
+    width: 400px;
     height: 400px;
 
 }
-.container-1{
+
+.container-1 {
     padding-top: 20px;
     padding-bottom: 10px;
     text-align: center;
 }
-shopmoreButton{
+
+shopmoreButton {
     text-align: center;
     position: center;
     padding-bottom: 20px;
     float: right;
 }
-.card{
+
+.card {
     height: 60vh;
-    margin:25px;
+    margin: 25px;
     padding: 25px;
 }
-.center{
-    position :absolute;
-    top:50%;
-    transform: translate(-50%,-50%);
-    left:50%;
+
+.center {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
     text-align: center;
 }

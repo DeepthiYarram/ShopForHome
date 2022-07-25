@@ -1,27 +1,21 @@
-/*  .flex-spacer {
-    flex: 1 1 auto;
-
-} 
-.flex-icon-1{
-    margin-left :800px;
-}
-
- */
-
-.container{
+.container {
     position: right;
     text-align: right;
     float: right;
 }
-.f1{
+
+.f1 {
     margin-left: 950px;
 }
-.flex-icon-3{
+
+.flex-icon-3 {
     margin-right: 00px;
 }
-f2{
+
+f2 {
     margin-right: 0px;
 }
-.flex-icon-4{
+
+.flex-icon-4 {
     margin-right: 300%;
 }

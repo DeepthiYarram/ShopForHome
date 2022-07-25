@@ -33,8 +33,6 @@ public class WishlistController {
 	private WishlistService wishlistService;
 	@Autowired
 	private UserDao userDao;
-	
-	
 	@PostMapping("/addToWishlist/{userName}") 
 	public Wishlist addToWishList(@PathVariable String userName, @RequestBody Product product){
 		Wishlist wishlist = new Wishlist();
@@ -43,12 +41,10 @@ public class WishlistController {
 		Date today = new Date();
 		//System.out.println(formatter.format(today));
 		System.out.println("in wishlist controller");
-		
 		System.out.println(user);
 		wishlist.setUser(user);
 		wishlist.setProduct(product);
 		wishlist.setCreatedDate(today);
-	
 		return wishlistService.addToWishlist(wishlist);
 	}
 	
@@ -60,11 +56,9 @@ public class WishlistController {
 	@DeleteMapping("/removeWishlistProduct/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteWishlistproduct(@PathVariable int id){
 		wishlistService.deleteWishlistProduct(id);
-		
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
-	
 
 }

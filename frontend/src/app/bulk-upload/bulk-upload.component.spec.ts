@@ -8,9 +8,9 @@ describe('BulkUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BulkUploadComponent ]
+      declarations: [BulkUploadComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(BulkUploadComponent);
     component = fixture.componentInstance;

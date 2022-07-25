@@ -14,17 +14,15 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService,
     private userAuthService: UserAuthService,
     private router: Router,
-    private userauthService:UserAuthService) { }
+    private userauthService: UserAuthService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   login(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
-
-
         this.userAuthService.setRoles(response.user.role);
         this.userAuthService.setToken(response.jwtToken);
         const role = response.user.role[0].roleName;
@@ -38,26 +36,16 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         alert("Please enter correct username/password!");
-
         console.log(error);
-
       }
-
     );
-
-
   }
 
-  public setUser(response:any){
-    localStorage.setItem("userName",response.user.userName);
+  public setUser(response: any) {
+    localStorage.setItem("userName", response.user.userName);
     console.log(response.user.userName);
   }
-  public getUser():any{
+  public getUser(): any {
     return localStorage.getItem('userName');
   }
-  
-
-  
-    
-
 }

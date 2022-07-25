@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class BulkUploadService {
   baseApiUrl = "http://localhost:9090/upload"
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  upload(file: File):Observable<any>{
+  upload(file: File): Observable<any> {
     const formData = new FormData();
-    formData.append("file",file,file?.name);
-    return this.http.post(this.baseApiUrl,formData);
+    formData.append("file", file, file?.name);
+    return this.http.post(this.baseApiUrl, formData);
   }
 }

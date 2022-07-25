@@ -11,9 +11,9 @@ import { SalesReportService } from '../_services/sales-report.service';
 export class SalesReportComponent implements OnInit {
 
   salesDetails: any = [];
-  salesDate:any = [];
+  salesDate: any = [];
   constructor(private salesService: SalesReportService,
-    private excelService:ExcelService) { }
+    private excelService: ExcelService) { }
 
   ngOnInit(): void {
     this.getSalesReport();
@@ -31,35 +31,28 @@ export class SalesReportComponent implements OnInit {
   }
 
   printList() {
-
     window.print();
-    // this.salesService.getSalesReport().subscribe(
-    //   response => this.excelService.exportAsExcelFile(response,"Sales-Report0")
-    // );
   }
 
   date(dateForm: NgForm) {
     console.log()
     let sample: any = [];
-
     console.log(dateForm.value.startDate);
     this.salesService.getSalesReport().subscribe(
       (res) => {
         sample = res;
         console.log(sample);
         for (let i = 0; i < sample.length; i++) {
-          let date:Date = sample[i].orderDate;
-          let startDate :Date = dateForm.value.startDate;
-          let endDate :Date = dateForm.value.endDate;
-          if (date<endDate && date>startDate) {
+          let date: Date = sample[i].orderDate;
+          let startDate: Date = dateForm.value.startDate;
+          let endDate: Date = dateForm.value.endDate;
+          if (date < endDate && date > startDate) {
             this.salesDate = sample[i]
-            
           }
           else {
             continue;
           }
         }
-
       }
     )
   }

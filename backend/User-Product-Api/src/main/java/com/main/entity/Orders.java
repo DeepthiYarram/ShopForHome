@@ -23,10 +23,6 @@ import lombok.Setter;
 
 @Entity
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Orders {
 	
 	@Id
@@ -48,5 +44,83 @@ public class Orders {
 	private Double Total;
 	
 	private Date orderDate;
+
+	public Integer getOrderId() {
+		return OrderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		OrderId = orderId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Double getGrandTotalPrice() {
+		return GrandTotalPrice;
+	}
+
+	public void setGrandTotalPrice(Double grandTotalPrice) {
+		GrandTotalPrice = grandTotalPrice;
+	}
+
+	public Integer getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		Quantity = quantity;
+	}
+
+	public Double getTotal() {
+		return Total;
+	}
+
+	public void setTotal(Double total) {
+		Total = total;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public Orders(Integer orderId, User user, Product product, Double grandTotalPrice, Integer quantity, Double total,
+			Date orderDate) {
+		super();
+		OrderId = orderId;
+		this.user = user;
+		this.product = product;
+		GrandTotalPrice = grandTotalPrice;
+		Quantity = quantity;
+		Total = total;
+		this.orderDate = orderDate;
+	}
+
+	public Orders() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Orders [OrderId=" + OrderId + ", user=" + user + ", product=" + product + ", GrandTotalPrice="
+				+ GrandTotalPrice + ", Quantity=" + Quantity + ", Total=" + Total + ", orderDate=" + orderDate + "]";
+	}
 	
 }

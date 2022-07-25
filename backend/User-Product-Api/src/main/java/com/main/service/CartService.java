@@ -51,12 +51,9 @@ public class CartService {
 		}
 		public ResponseEntity<Map<String, Boolean>> deleteAllCartProduct(){
 			cartDao.deleteAll();
-			
-			
 			Map<String, Boolean> response = new HashMap<>();
 			response.put("deleted", Boolean.TRUE);
 			return ResponseEntity.ok(response);
 		}
 		
-	
 }

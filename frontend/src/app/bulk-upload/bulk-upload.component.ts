@@ -13,7 +13,7 @@ export class BulkUploadComponent implements OnInit {
   loading: boolean = false;
   file!: File;
   constructor(private bulkUpload: BulkUploadService
-    ,private router:Router) { }
+    , private router: Router) { }
 
   ngOnInit(): void {
   }

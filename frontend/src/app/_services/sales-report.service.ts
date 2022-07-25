@@ -6,22 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class SalesReportService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
+  getSalesReport() {
 
-  
-getSalesReport(){
+    return this.http.get("http://localhost:9091/getSalesReport");
+  }
 
-  return  this.http.get("http://localhost:9091/getSalesReport");
 }
-
-getCurrentUserOrders(){
-
-  return this.http.get("http://localhost:9091/getSalesReport").forEach(
-    (a:any)=>{
-    
-    }
-  )
-}
-}
-

@@ -5,6 +5,6 @@ export interface Product {
     productDiscountedPrice: number;
     productActualPrice: number;
     productCategory: string;
-    productStock:number;
-    productImageLink:string
+    productStock: number;
+    productImageLink: string
 }

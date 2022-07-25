@@ -25,8 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.main.dao.CartDao;
+import com.main.dao.OrderDao;
 import com.main.dao.ProductDao;
+import com.main.dao.WishlistDao;
+import com.main.entity.Cart;
+import com.main.entity.Orders;
 import com.main.entity.Product;
+import com.main.entity.Wishlist;
 import com.main.helper.CSVHelper;
 import com.main.mail.EmailSenderService;
 import com.main.message.ResponseMessage;
@@ -44,8 +50,13 @@ public class ProductController {
 	private EmailSenderService emailService;
 	String mailSubject = "Alert!!!! Product Stock less than 10";
 
-	
-	
+	@Autowired
+	private WishlistDao wishlistDao;
+	@Autowired
+	private CartDao cartDao;
+	// private User user;
+	@Autowired
+	private OrderDao orderDao;
 
 	@PostMapping("/addNewProduct")
 	public Product addNewProduct(@RequestBody Product product) {
@@ -78,7 +89,6 @@ public class ProductController {
 	@GetMapping("/getProduct/{productId}")
 	public ResponseEntity<Product> getEmployeeById(@PathVariable Integer productId) {
 		Product product = productDao.findById(productId).orElseThrow();
-//				.orElseThrow(() -> new ResourceNotFoundException("product not exist with id :" + productId));
 		return ResponseEntity.ok(product);
 	}
 	// update product rest api
@@ -87,14 +97,12 @@ public class ProductController {
 	public ResponseEntity<Product> updateEmployee(@PathVariable Integer productId,
 			@RequestBody Product productdetails) {
 		Product product = productDao.findById(productId).orElseThrow();
-
 		product.setProductName(productdetails.getProductName());
 		product.setProductCategory(productdetails.getProductCategory());
 		product.setProductDescription(productdetails.getProductDescription());
 		product.setProductStock(productdetails.getProductStock());
 		product.setProductDiscountedPrice(productdetails.getProductDiscountedPrice());
 		product.setProductActualPrice(productdetails.getProductActualPrice());
-
 		Product updatedProduct = productDao.save(product);
 		return ResponseEntity.ok(updatedProduct);
 	}
@@ -102,14 +110,37 @@ public class ProductController {
 	@DeleteMapping("/deleteProduct/{productId}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Integer productId) {
 		Product product = productDao.findById(productId).orElseThrow();
-
+		ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>) wishlistDao.findAll();
+		ArrayList<Cart> cart = (ArrayList<Cart>) cartDao.findAll();
+		ArrayList<Orders> order = (ArrayList<Orders>) orderDao.findAll();
+		for(int i=0;i<wishlist.size();i++) {
+			if(wishlist.get(i).getProduct().equals(product)) {
+				Wishlist list = wishlist.get(i);
+				Integer id = list.getId();
+				wishlistDao.deleteById(id);
+			}
+		}
+		for(int i=0;i<cart.size();i++) {
+			if(cart.get(i).getProduct().equals(product)) {
+				Cart list = cart.get(i);
+				Integer id = list.getCartId();
+				cartDao.deleteById(id);
+			}
+		}
+		for(int i=0;i<order.size();i++) {
+			if(order.get(i).getProduct().equals(product)) {
+				Orders list = order.get(i);
+				Integer id = list.getOrderId();
+				orderDao.deleteById(id);
+			}
+		}
+		
 		productDao.delete(product);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
 
-	
 	@EventListener(ApplicationReadyEvent.class)
 	public void triggerMail() {
 		ArrayList<Product> products = (ArrayList<Product>) productDao.findAll();
@@ -124,8 +155,7 @@ public class ProductController {
 			} else {
 				continue;
 			}
-		}          
-
+		}
 	}
 
 }

@@ -4,7 +4,7 @@
             <div class="col">
                 <p style="font-family: 'Times New Roman', Times, serif; font-weight: 800px;">Add New Product</p>
                 <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
-                
+
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Product Name</mat-label>
                         <input matInput placeholder="Product Name" [(ngModel)]="product.productName" name="productName">
@@ -46,9 +46,7 @@
                         <mat-label>Product Image File Name </mat-label>
                         <input matInput placeholder="Product Image Link" [(ngModel)]="product.productImageLink"
                             name="productImageLink">
-
                     </mat-form-field>
-
 
                     <div align="end">
                         <button type="submit" mat-raised-button color="primary" style="margin-right: 3px;">Add
@@ -85,7 +83,7 @@
                                 Product Actual Price
                             </th>
                             <th>
-                                Options 
+                                Options
                             </th>
 
                         </tr>
@@ -100,7 +98,8 @@
                             <td>{{product.productDiscountedPrice}}</td>
                             <td>{{product.productActualPrice}}</td>
                             <td>
-                                <button mat-raised-button color="primary" (click)="updateProduct(product)">Update</button>
+                                <button mat-raised-button color="primary"
+                                    (click)="updateProduct(product)">Update</button>
                                 <button mat-raised-button color="warn" (click)="deleteProduct(product)">Delete</button>
                             </td>
 

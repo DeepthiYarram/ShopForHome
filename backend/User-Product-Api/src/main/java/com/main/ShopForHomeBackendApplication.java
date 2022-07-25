@@ -13,12 +13,7 @@ import com.main.mail.EmailSenderService;
 @EnableEurekaClient
 public class ShopForHomeBackendApplication {
 
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(ShopForHomeBackendApplication.class, args);
 	}
-
-	
-
 }

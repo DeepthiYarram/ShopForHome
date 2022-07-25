@@ -9,32 +9,32 @@ import { WishlistService } from '../_services/wishlist.service';
 })
 export class WishlistComponent implements OnInit {
 
-  wishlistData:any = [];
-  constructor(private http:HttpClient,
-    private wishlistservice:WishlistService) { }
+  wishlistData: any = [];
+  constructor(private http: HttpClient,
+    private wishlistservice: WishlistService) { }
 
   ngOnInit(): void {
     this.getWishlistProducts();
   }
 
-  getWishlistProducts(){
+  getWishlistProducts() {
     const userName = localStorage.getItem("userName");
     this.wishlistservice.getWishlist().subscribe(
-      (resp)=>{
+      (resp) => {
         console.log(resp);
-        this.wishlistData=resp;
+        this.wishlistData = resp;
         console.log(this.wishlistData);
       }
     );
   }
 
-  deleteWishlistProduct(id:number){
+  deleteWishlistProduct(id: number) {
     this.wishlistservice.deleteWishlistProduct(id).subscribe(
-      (resp)=>{
+      (resp) => {
         console.log(resp);
         this.getWishlistProducts();
       },
-      (error)=>console.log(error)
+      (error) => console.log(error)
     );
   }
 }

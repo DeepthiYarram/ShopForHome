@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  {path:'', redirectTo:"/home",pathMatch:'full'},
+  { path: '', redirectTo: "/home", pathMatch: 'full' },
   { path: 'registration', component: RegistrationComponent },
   { path: 'addNewProduct', component: AddNewProductComponent },
   { path: 'userManagement', component: UserManagementComponent },
@@ -36,21 +36,14 @@ const routes: Routes = [
     path: 'updateProduct/:productId', component: UpdateProductComponent
   },
   {
-    path:'discount',component: DiscountComponent
+    path: 'discount', component: DiscountComponent
   },
   {
-    path:'salesReport',component:SalesReportComponent
+    path: 'salesReport', component: SalesReportComponent
   },
   {
-    path:'orderPage' , component:OrderPageComponent
+    path: 'orderPage', component: OrderPageComponent
   }
-
-
-
-
-
-
-
 ];
 
 @NgModule({

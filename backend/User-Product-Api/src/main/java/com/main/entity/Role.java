@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Entity
-@Getter
-@ToString
 
 public class Role {
 
@@ -33,6 +31,10 @@ public class Role {
     public void setRoleDescription(String roleDescription) {
         this.roleDescription = roleDescription;
     }
-    
-    
+
+	@Override
+	public String toString() {
+		return "Role [roleName=" + roleName + ", roleDescription=" + roleDescription + "]";
+	}
+ 
 }

@@ -10,38 +10,36 @@ import { Observable } from 'rxjs';
 export class DiscountService {
 
   requestBody = new HttpHeaders({
-    "No-Auth":"True",
-    "Accept":"application/json",
-    "Content-Type":"application/json"
+    "No-Auth": "True",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
   });
-  constructor( private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
+  addCoupon(discountform: NgForm): Observable<Object> {
 
-
-  addCoupon(discountform:NgForm ):Observable<Object>{
-
-    return this.http.post("http://localhost:9092/addCoupon",discountform,{headers:this.requestBody});
+    return this.http.post("http://localhost:9092/addCoupon", discountform, { headers: this.requestBody });
 
   }
 
-  getCoupons(){
+  getCoupons() {
     return this.http.get("http://localhost:9092/getCoupons");
   }
 
-  deleteCoupon(id:number){
-    return this.http.delete("http://localhost:9092/deleteCoupon/"+id);
+  deleteCoupon(id: number) {
+    return this.http.delete("http://localhost:9092/deleteCoupon/" + id);
   }
 
-  addUserCoupon(user:any,amnt:number){
+  addUserCoupon(user: any, amnt: number) {
 
-    return this.http.post("http://localhost:9090/addDiscountEligibility/"+user.userName+"/"+amnt,NONE_TYPE);
+    return this.http.post("http://localhost:9090/addDiscountEligibility/" + user.userName + "/" + amnt, NONE_TYPE);
   }
 
-  getUserCoupons(){
+  getUserCoupons() {
     return this.http.get("http://localhost:9090/getDiscountEligibility");
   }
 
-  removeDiscount(id:number){
-    return this.http.delete("http://localhost:9090/deleteUserCoupon/"+id);
+  removeDiscount(id: number) {
+    return this.http.delete("http://localhost:9090/deleteUserCoupon/" + id);
   }
 }

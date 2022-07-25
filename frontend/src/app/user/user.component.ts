@@ -16,13 +16,10 @@ export class UserComponent implements OnInit {
 
   message: string | undefined;
   products: any;
-  public categories:any;
+  public categories: any;
   wishlist: Wishlist[] = [];
   enteredSearchValue: string = '';
-
   public cartList: any = [];
-
-
   public totalItem: number = 0;
   constructor(private userService: UserService,
     private productService: ProductServiceService,
@@ -32,7 +29,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
 
     this.forUser();
-
     this.getProducts();
     this.getCount();
 
@@ -56,7 +52,6 @@ export class UserComponent implements OnInit {
         console.log(resp);
         this.products = resp;
         this.categories = resp;
-        //cart code
         this.products.forEach((a: any) => {
           Object.assign(a, { quantity: 1, total: a.price });
         })
@@ -67,10 +62,7 @@ export class UserComponent implements OnInit {
 
   addToWishlist(product: Product) {
     console.log(product);
-
     const theWishList = new Wishlist(product);
-
-
     this.wishListService.addNewWishlist(product);
     alert("Product Added to wishlist!")
   }
@@ -89,26 +81,19 @@ export class UserComponent implements OnInit {
     console.log(this.enteredSearchValue)
   }
 
-
   public getCount() {
     this.CartService.getCartList().subscribe(res => {
       this.cartList = res
       this.totalItem = this.cartList.length;
-
-
     });
   }
 
-  shoponCategory(category:string){
+  shoponCategory(category: string) {
     console.log(category);
-    this.categories = this.products.filter((a:any)=>
-    {
-      if(a.productCategory == category || category == ''){
+    this.categories = this.products.filter((a: any) => {
+      if (a.productCategory == category || category == '') {
         return a;
       }
     })
-
-
   }
 }
-

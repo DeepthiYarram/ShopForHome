@@ -33,12 +33,9 @@
                 <td>{{user.emailId}}</td>
                 <td>{{user.phoneNumber}}</td>
                 <td>{{user.role[0].roleName}}</td>
-                <td><button class="button pd-3" mat-raised-button color="warn" (click)="deleteUser(user.userName)">Delete</button>&nbsp;</td>
+                <td><button class="button pd-3" mat-raised-button color="warn"
+                        (click)="deleteUser(user.userName)">Delete</button>&nbsp;</td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<!-- 
-
-<button mat-raised-button color="primary" (click)="updateUser()">Update</button> -->

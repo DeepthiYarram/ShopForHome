@@ -16,6 +16,5 @@ public class OrderService {
 	public List<Orders> getallOrders(){
 		return orderDao.findAll();
 	}
-	
-	
+		
 }

@@ -28,9 +28,6 @@ public class UserController {
     private UserService userService;
     @Autowired
     private JwtService jwtService;
-
-   
-
     @PostConstruct
     public void initRoleAndUser() {
         userService.initRoleAndUser();
@@ -60,9 +57,7 @@ public class UserController {
     
     @GetMapping("/usersList")
     public List<User> getUsersList(User user){
-    	
     	return userService.getUsersList(user);
-    	
     }
     
     @DeleteMapping("/deleteUser/{userName}")
